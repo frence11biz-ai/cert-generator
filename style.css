@@ -51,3 +51,27 @@ body {
   border-radius: 1rem;
   overflow: hidden;
 }
+
+.app-tabs .nav-link {
+  border-radius: 0.6rem;
+  font-weight: 600;
+  color: var(--moph-dark-green);
+  background: #f3f6f4;
+}
+
+.app-tabs .nav-link.active {
+  background-color: var(--moph-green);
+  color: #fff;
+}
+
+.records-table th {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #6c757d;
+  border-bottom-width: 1px;
+}
+
+.records-table td {
+  vertical-align: middle;
+}
