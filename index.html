@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate Generator | Cagayan de Oro College - PHINMA</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Font similar to template -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-wrapper">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-md-9">
+
+        <div class="card shadow-lg border-0 form-card">
+          <div class="card-body p-4 p-md-5">
+
+            <div class="text-center mb-4">
+              <div class="brand-icon mb-2">🏅</div>
+              <h1 class="h3 fw-bold mb-1">Certificate of Completion</h1>
+              <p class="text-muted mb-0">Nursing Leadership and Management Seminar</p>
+              <p class="text-muted small mb-0">"AI and the Future of Nursing: Will Technology Replace or Empower Nurses?"</p>
+              <p class="text-muted small">Cagayan de Oro College - PHINMA | College of Allied Health Sciences</p>
+            </div>
+
+            <ul class="nav nav-pills nav-fill gap-2 mb-4 app-tabs" id="appTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="generate-tab" data-bs-toggle="tab"
+                        data-bs-target="#generatePane" type="button" role="tab"
+                        aria-controls="generatePane" aria-selected="true">
+                  Generate
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="records-tab" data-bs-toggle="tab"
+                        data-bs-target="#recordsPane" type="button" role="tab"
+                        aria-controls="recordsPane" aria-selected="false">
+                  Public Records
+                </button>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="appTabContent">
+              <div class="tab-pane fade show active" id="generatePane" role="tabpanel" aria-labelledby="generate-tab" tabindex="0">
+                <form id="certForm" novalidate>
+                  <div class="mb-4">
+                    <label for="fullName" class="form-label fw-semibold">Enter your full name</label>
+                    <input type="text" class="form-control form-control-lg" id="fullName"
+                           placeholder="e.g. Juan Dela Cruz" maxlength="60" required>
+                    <div class="invalid-feedback">
+                      Please enter your name to generate the certificate.
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-success btn-lg w-100" id="generateBtn">
+                    <span id="btnText">Generate Certificate</span>
+                    <span id="btnSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status"></span>
+                  </button>
+                </form>
+
+                <p class="text-center text-muted small mt-4 mb-0">
+                  Your certificate will be shown as a preview before you download it as a PDF.
+                </p>
+              </div>
+
+              <div class="tab-pane fade" id="recordsPane" role="tabpanel" aria-labelledby="records-tab" tabindex="0">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="mb-0 text-muted small">People who successfully generated a certificate</p>
+                  <button type="button" class="btn btn-sm btn-outline-success" id="refreshRecordsBtn">
+                    Refresh
+                  </button>
+                </div>
+
+                <div id="recordsStatus" class="text-center text-muted py-4">Loading records…</div>
+                <div class="table-responsive d-none" id="recordsTableWrap">
+                  <table class="table table-hover align-middle mb-0 records-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Generated</th>
+                      </tr>
+                    </thead>
+                    <tbody id="recordsBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Preview Modal -->
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="previewModalLabel">Preview Your Certificate</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center bg-light-subtle">
+        <img id="previewImage" src="" alt="Certificate Preview" class="preview-img img-fluid rounded shadow-sm">
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+          Edit Name
+        </button>
+        <button type="button" class="btn btn-success" id="downloadPdfBtn">
+          <i class="bi"></i> Download as PDF
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden canvas used for rendering -->
+<canvas id="certCanvas" width="2048" height="1446" style="display:none;"></canvas>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="certificate-template.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
